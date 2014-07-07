@@ -1,8 +1,9 @@
 ---
 # tasks file for s3fs
-- name: Install s3fs build dependencies
+- name: Install s3fs dependencies
   apt: pkg={{ item }} state=present
   with_items:
+  - fuse
   - build-essential
   - libfuse-dev
   - libcurl4-openssl-dev
