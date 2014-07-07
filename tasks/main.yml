@@ -1,0 +1,19 @@
+---
+# tasks file for s3fs
+- name: Install s3fs build dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+  - build-essential
+  - libfuse-dev
+  - libcurl4-openssl-dev
+  - libxml2-dev
+  - mime-support
+  - automake
+  - libtool
+  - libcrypto++-dev
+- name: Download s3fs sources
+  get_url: url={{ s3fs_source }} dest=/tmp/s3fs-fuse-{{s3fs_version}}.tar.gz
+- name: Extract s3fs sources
+  command: tar xzvf /tmp/s3fs-fuse-{{s3fs_version}}.tar.gz -C /tmp creates=/tmp/s3fs-fuse-{{s3fs_version}}
+- name: Build and install s3fs
+  shell: ./autogen.sh && ./configure --prefix={{ s3fs_install_prefix }} && make && make install chdir=/tmp/s3fs-fuse-{{s3fs_version}} creates={{ s3fs_install_prefix }}/bin/s3fs

@@ -1,0 +1,4 @@
+---
+# defaults file for s3fs
+s3fs_version: 1.77
+s3fs_install_prefix: /usr

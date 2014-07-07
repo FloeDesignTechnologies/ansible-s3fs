@@ -1,0 +1,3 @@
+---
+# vars file for s3fs
+s3fs_source: "{{ 'https://github.com/s3fs-fuse/s3fs-fuse/archive/v' + (s3fs_version|string) + '.tar.gz' }}"
